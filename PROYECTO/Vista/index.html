@@ -1,0 +1,151 @@
+﻿
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Proyecto</title>
+    <link href="../Css/Css_página_principal.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" href="../Imagenes/1.jpg" />
+    <script src="../Js/jquery-3.4.1.min.js"></script>
+    <script src="../Js/slick.min.js"></script>
+</head>
+
+<body>
+    <div id="navegador">
+        <nav>
+            <ul>
+                <li>
+                    <a class="direccion" href="">INICIO</a>
+                </li>
+                <li>
+                    <a class="direccion" href="">NOTICIAS</a>
+                </li>
+                <li>
+                    <a class="direccion" href="">ACERCA DE NOSOTROS</a>
+                </li>
+            </ul>
+
+        </nav>
+    </div>
+    <header>
+
+        <div id="carrusel">
+            <div class="slide"><img id="banner" src="../Imagenes/banner1.jpg" alt=""></div>
+            <div class="slide"><img id="banner" src="../Imagenes/banner2.jpg" alt=""></div>
+            <div class="slide"><img id="banner" src="../Imagenes/banner3.jpg" alt=""></div>
+        </div>
+        <button id="retroceder"><</button>
+        <button id="avanzar">></button>
+    </header>
+    <div id="contenedor">
+        <main>
+            <aside class="asideIzquierdo">
+                <a href="https://tenor.com/es/view/toyota-gif-10301355" target="_blank">
+                    <img src="../Gif/toyota.gif" alt="">
+                </a>
+                <a href="https://tenor.com/es/view/toyota-corolla-gif-25397063" target="_blank">
+                    <img src="../Gif/toyota-corolla.gif" alt="">
+                </a>
+            </aside>
+            <section id="section01">
+                
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <table id="autos" class="table">
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <aside class="asideDerecho">
+                <a href="">Autos</a>
+                <h3>Toyota Agya</h3>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/P2qa9vc8eeM?si=bIaXj1JcukdX4BVL" frameborder="0" allow="autoplay; encrypted-media"
+                        allowfullscreen></iframe>
+                <h4>Descripcion</h4>
+                <p>
+                    Porque todo lo que buscas en tu primer auto lo tiene el nuevo Toyota Agya. Conoce su renovado diseño imponente, con más espacio interior y todo lo que necesitas para tus próximos planes.
+                </p>
+            </aside>
+        </main>
+    </div>
+
+    <div id="extra01">
+        <aside id="aside02">
+            <h1>Toyota Supra GR</h1>
+            <p>
+                Motor de 4 cilindros en línea con un solo turbo de 2.0 L de doble desplazamiento
+                Ruedas de aluminio fundido de 18 plg y 10 rayos con acabado en dos tonos
+                255 caballos de fuerza a 5000-6500 rpm *
+                295 lb-pie de torsión a 1550-4400 rpm
+            </p>
+            <a class="masCuriosidades">
+                <h2>Ver más Noticias</h2>
+            </a>
+        </aside>
+        <section id="section02">
+            <img src="../Imagenes/Autos/toyotasupra.png">
+        </section>
+    </div>
+
+    <div id="modelos">
+        <h1>Comparar Modelos</h1>
+    </div>
+
+    <div id="extra02">
+        <section class="section03">
+            <p id="acercaDeNosotros">Acerca de nosotros
+            <p>
+        </section>
+
+    </div>
+
+
+
+    <div>
+        <footer>
+            <a href="https://www.twitter.com/" target="_blank">
+                <img src="../Imagenes/twitter.png" alt="">
+            </a>
+            <a href="https://www.youtube.com/" target="_blank">
+                <img src="../Imagenes/youtube.png" alt="">
+            </a>
+        </footer>
+    </div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: 'https://localhost:44351/api/toyota',
+            type: 'GET',
+            success: function (data) {
+                data.forEach((item, indice) =>{
+                    let htmlRow = "";
+                    htmlRow += "<tr>";
+                    htmlRow += "<td>" + item.imagen + "</td>";
+                    htmlRow += "<td>" + item.descripcion + "</td>";
+                    htmlRow += "</tr>";
+
+                    $("#autos tbody").append(htmlRow);
+
+                })
+            },
+            error: function () { }
+        });
+
+    });
+
+</script>
+</html>
+<script src="../Js/js_pagina_principal.js"></script>
+<link href="../Css/slick.css" rel="stylesheet" />
+<link href="../Css/slick-theme.css" rel="stylesheet" />
