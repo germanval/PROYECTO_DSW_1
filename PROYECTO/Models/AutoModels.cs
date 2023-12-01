@@ -7,7 +7,7 @@ namespace PROYECTO.Models
 {
     public class AutoModels
     {
-        public string Codigo { get; set; }
+        public int Codigo { get; set; }
         public string Numero_Serie { get; set; }
         public string Nombre { get; set; }
         public double Precio { get; set; }

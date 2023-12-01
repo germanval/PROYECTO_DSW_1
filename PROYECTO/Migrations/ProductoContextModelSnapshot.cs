@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PROYECTO.DataAccess.Context;
 
+#nullable disable
+
 namespace PROYECTO.Migrations
 {
     [DbContext(typeof(ProductoContext))]
@@ -15,16 +17,18 @@ namespace PROYECTO.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.15")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("PROYECTO.DataAccess.AutosEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("Codigo")
                         .HasColumnType("int");
@@ -65,8 +69,9 @@ namespace PROYECTO.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Apellidos")
                         .HasColumnType("nvarchar(max)");
@@ -95,8 +100,9 @@ namespace PROYECTO.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("ClienteId")
                         .HasColumnType("int");
@@ -124,8 +130,9 @@ namespace PROYECTO.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("AutosId")
                         .HasColumnType("int");
@@ -153,6 +160,8 @@ namespace PROYECTO.Migrations
                     b.HasOne("PROYECTO.DataAccess.ClienteEntity", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId");
+
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("PROYECTO.DataAccess.DetalleCompraEntity", b =>
@@ -164,6 +173,10 @@ namespace PROYECTO.Migrations
                     b.HasOne("PROYECTO.DataAccess.CompraEntity", "Compra")
                         .WithMany()
                         .HasForeignKey("CompraId");
+
+                    b.Navigation("Autos");
+
+                    b.Navigation("Compra");
                 });
 #pragma warning restore 612, 618
         }

@@ -42,10 +42,10 @@ nav ul li a{
 	margin: 20px auto;
 }
 
-#contenedor{
+#contenedor {
 	width: 95%;
 	margin: 20px auto;
-
+	height: 300px;
 }
 header img{
 	width: 100%;

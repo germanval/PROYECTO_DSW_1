@@ -33,6 +33,16 @@ namespace PROYECTO
             services.AddDbContext<ProductoContext>(option =>
             option.UseSqlServer(Configuration.GetConnectionString("ToyotaDB"),
             ef => ef.MigrationsAssembly(typeof(ProductoContext).Assembly.FullName)));
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend", builder =>
+                {
+                    builder.WithOrigins("http://127.0.0.1:5500")  // Reemplaza con la URL de tu aplicación frontend
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();
+                });
+            });
             services.AddControllers();
             
         }
@@ -86,6 +96,8 @@ namespace PROYECTO
 
             });
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowFrontend");
 
             app.UseRouting();
 
