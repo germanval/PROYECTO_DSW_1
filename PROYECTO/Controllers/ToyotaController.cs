@@ -27,6 +27,16 @@ namespace PROYECTO.Controllers
          
         }
 
+        [HttpGet]
+        [Route("")]
+        public IList<AutoModels> GetAll()
+        {
+            var listar = _productoContext.Autos.ToList();
+            var contenido = _mapper.Map<List<AutoModels>>(listar);
+            return contenido;
+        }
+
+
 
         [HttpGet("ListadoDeDetalles")]
         public IList<DetalleModels> GetDetallesConAutos()

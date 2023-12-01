@@ -49,22 +49,10 @@
                 </a>
             </aside>
             <section id="section01">
-                
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <table id="autos" class="table">
-                            <thead>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                            <tbody>
+                <div id="autos" style="width:100% !important;">
 
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
+
             </section>
             <aside class="asideDerecho">
                 <a href="">Autos</a>
@@ -128,18 +116,26 @@
             url: 'https://localhost:44351/api/toyota',
             type: 'GET',
             success: function (data) {
-                data.forEach((item, indice) =>{
+                const image = data.imagen;
+                data.forEach((item, indice) => {
                     let htmlRow = "";
-                    htmlRow += "<tr>";
-                    htmlRow += "<td>" + item.imagen + "</td>";
-                    htmlRow += "<td>" + item.descripcion + "</td>";
-                    htmlRow += "</tr>";
+                    htmlRow += "<div style='width:30% !important; float:left;'>";
+                    htmlRow += "<center>";
+                    htmlRow += "<img  src='" + item.imagen + "' />";
+                    htmlRow += "</center>";
+                    htmlRow += "<div>";
+                    htmlRow += "<p>" + item.descripcion + "</p>";
+                    htmlRow += "</div>";
+                    htmlRow += "</div>";
 
-                    $("#autos tbody").append(htmlRow);
+
+                    $("#autos").append(htmlRow);
+
 
                 })
             },
             error: function () { }
+
         });
 
     });
